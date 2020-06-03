@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link href="/img/hearts.png" rel="shortcut icon"
+            sizes="196x196">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/img/lovecircle_logo.png" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <title>Love circle</title>
+        <script src="/js/lib/jquery-3.4.1.js"></script>
+        <script src="/js/lib/wow.min.js"></script>
+        <script src="/js/lib/materialize.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/css/hamburgers.min.css">
+        <link rel="stylesheet" href="/css/animate.css">
+        <link rel="stylesheet" href="/css/lovecircle.css">
+        <link rel="stylesheet" href="/css/materialize.min.css">
+</head>
+<body>
+        <div class="container-fluid">
+        <div id="middle_heart">
+            <img class="animated infinite heartBeat middle_img" src="/img/painted.png" alt="">
+        </div>
+        <div class="containing-div" id="containing_div">
+            <div id="left">
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+            </div>
+            <div id="top">
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+            </div>
+            <div id="right">
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+            </div>
+            <div id="bottom">
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+                 <img class="animated infinite zoomIn slow" src="/img/heart.png" alt="red heart" 
+                     >
+            </div>
+        </div>
+        <div class="message fadeIn animated slow">
+            <div class="form">
+            <div id="controls">
+                <span
+                    class="btn btn-small white black-text waves-effect waves-light waves-ripple btn-block control_btn"><span
+                        class="green-text"
+                        style="font-weight: 800; font-size: 19px;">👤</span> User:
+                    <span style="text-transform: lowercase;"><%= user%></span>
+                </span>
+            <%if(user != "Guest"){%>
+                 <span class="btn  btn-small btn-block white waves-effect waves-light waves-ripple black-text control_btn m-0"><span
+                         class="green-text" style="font-weight: 800; font-size: 19px;">📩 </span> Received:
+                     <span style="text-transform: lowercase;"><%= messages_length%></span>
+                 </span>
+                 <span
+                     class="btn btn-small btn-block white waves-effect waves-light waves-ripple black-text control_btn m-0"
+                     id="view_messages">My
+                     Messages</span>
+            <%}%>
+            <% if(user == "Guest"){%>
+                <span class="btn btn-block white waves-effect waves-light waves-ripple black-text control_btn"
+                    id="view_messages"><i class="material-icons red-text">more</i> More</span>
+           <% }%>
+            </div>
+                <form action="/lovecircle/<%= user %>/message" method="POST" id="send_message_form">
+                    <h5 class="red-text" style="font-weight: 800;">Send A Message To The One You Love</h5>
+                    <p class="red-text center-align">Let them know you care about them this lockdown</p>
+                    <div class="input-field">
+                        <input type="text" name="to" id="to" required>
+                        <label for="to" class="red-text">To (Recipient's username )</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="name" name="name" class="black-text entry">
+                        <label for="name" class="red-text">Your name (optional)</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea name="message" id="message" cols="30" rows="10" class="entry materialize-textarea"
+                            required></textarea>
+                        <label for="message" class="red-text" >Message</label>
+                    </div>
+                    <input type="submit" value="Send" class="btn waves-circle waves-ripple red white-text btn-block">
+                </form>
+            <% if(error && error.length > 0){%>
+                <div class=" alert alert-danger flash animated m-0"><%= error%></div>
+            <%}%>
+             <% if(success && success.length > 0){%>
+             <div class=" alert alert-success fadeIn animated m-0"><%= success%></div>
+             <%}%>
+            </div>
+        </div>
+        <% if(currentUser) {%>
+            <div class="my_messages p-2 fadeIn animated slow" >
+                <span class="btn btn-block white waves-effect waves-light waves-ripple black-text" id="send_message">Send
+                    Message</span>
+                <ul id="message_collection" class="collection with-header message_collection"
+                    style="height: 100%;display: flex;flex-direction: column;justify-content: flex-start; overflow-y: auto;">
+                    <h5 class="red-text center-align"><span class="green-text"
+                            style="font-weight: 800; font-size: 19px;">💬 </span>My Messages</h5>
+                    <% messages.forEach(function(received){%>
+                            <li  id="user_message" class="collection-item"> 
+                            <p style="text-decoration: underline; padding-bottom: 2px;">
+                                <span style="font-weight: 800;">
+                                   💟 From:
+                                </span>
+                                <span style="">
+                                    <%if( received.from == "") {%>
+                                    <%= "Guest" %>
+                                    <%}else{%>
+                                    <%= received.from %>
+                                    <%}%>
+                                </span>
+                                </p>
+                                <span><%= received.message %> <br>  <span style="font-size: 10px;float: right;color: #5f5f5f"><%= received.timeStamp.toLocaleDateString()%> at <%=received.timeStamp.toLocaleTimeString() %></span></span>
+                            </li>
+                    <%}) %>
+                </ul>
+                <form action="/lovecircle"><input type="submit" value="Refresh"
+                        class="btn waves-light waves-ripple green white-text btn-block">
+                </form>
+                <form action="/logout" class="m-3 white-text " style="width: auto" >
+                    <input type="submit" value="Log Out"
+                        class="btn btn-block red waves-light btn-small waves-effect white-text">
+                </form>
+            </div>
+        <%}else{%>
+            <div class="my_messages p-3">
+                            <% if(user == "Guest"){%>
+                            <span class="btn btn-block white waves-effect waves-light waves-ripple black-text control_btn"
+                                id="send_message"><i class="material-icons red-text">more</i> More</span>
+                            <%}%>
+                            <ul class="collection with-header"
+                                style="height: 100%; display: flex;flex-direction: column;justify-content: flex-start;">
+                            <h5 class="red-text center-align">Log In to view messages</h5>
+                            <a class="white-text" href="/login"><button class="btn waves-ripple red white-text btn-block">Log In</button></a>
+                            <span class="center-align">or</span>
+                            <a class="white-text" href="/signup">
+                                <button class="btn waves-ripple green white-text btn-block">Register</button>
+                            </a>
+                            </ul>
+            </div> 
+            <%}%>
+    </div>
+    <div class="fixed-action-btn white-text" id="floating_menu">
+        <a class="btn-floating  pulse btn-large blue"> <I class="material-icons">menu</I></a>
+        <ul>
+            <li><a class="btn-floating  red" title="About" id="info"><i class="material-icons">info</i></a></li>
+            <li><a class="btn-floating green"
+                    href="whatsapp://send?text=Send+me+a+message+on+Love+Circle.+Enter+the+username:+'replace this with your username' http://lovecircle.herokuapp.com"
+                    data-action="share/whatsapp/share" title="share on whatsapp"><i class="material-icons">share</i></a></li>
+            <li><a class="btn-floating yellow darken-1" title="Dark / Normal mode" id="mode_switch"><i
+                        class="material-icons">brightness_4</i></a></li>
+            <li><a href="http://wa.me/2348136814497?text=Hey+Mikah+I+found+a+bug+on+Love+Circle" class="btn-floating white" title="Report bugs"><i>🐞</i></a></li>
+        </ul>
+    </div>
+    <script>
+        $(document).ready(function () {
+                $(window).resize(function () {
+
+                    $('.middle_img').css({
+                        position: 'absolute',
+                        left: ($(window).width()
+                            - $('.middle_img').outerWidth()) / 2,
+                        top: ($(window).height()
+                            - $('.middle_img').outerHeight()) / 2
+                    });
+                });
+                // To initially run the function:
+                $(window).resize();
+            });
+        document.addEventListener('DOMContentLoaded', function(){
+            var elems = document.querySelectorAll(".fixed-action-btn");
+            var instances = M.FloatingActionButton.init(elems, {direction: "left", hoverEnabled: false});
+        })
+    </script>
+    <script src="/js/script.js"></script>
+</body>
+</html>

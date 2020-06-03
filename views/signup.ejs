@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/img/lovecircle_logo.png" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Circle - Log In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/lovecircle.css">
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <script src="/js/lib/materialize.min.js"></script>
+    <script src="/js/lib/jquery-3.4.1.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
+    <nav>
+    </nav>
+    <div class="message fadeIn animated login_message" id="login_message">
+        <div class="form #ffffff94">
+            <span class="btn btn-small white black-text waves-effect waves-light waves-ripple btn-block">
+                <a href="/lovecircle"><span class="green-text" style="font-weight: 800; font-size: 19px;">👤</span>
+                    <span style="text-transform: capitalize;">Proceed as guest</span></a>
+            </span>
+            <form action="/register" method="POST">
+                <div class="head center-align">
+                    <img src="/img/lovecircle_logo.png" alt="lovecircle logo" height="70" width="70" id="login_logo">
+                    <h5 class="red-text" style="font-weight: 800;font-size: 3em;" id="login_h5">Sign Up</h5>
+                </div>
+                <div class="input-field">
+                    <input type="text" autocomplete="on" name="username" id="email" minlength="3" required>
+                    <label for="email" class="red-text">Username</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" autocomplete="on" name="password" id="password" minlength="5" maxlength="16" required>
+                    <label for="password" class="red-text">Password</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" autocomplete="on" name="confirmPassword" id="confirmPassword" required>
+                    <label for="password" class="red-text">Confirm Password</label>
+                </div>
+                <input type="submit" value="Sign up" class="btn waves-circle waves-ripple red white-text btn-block" id="signup">
+            </form>
+            <% if(error && error.length > 0){%>
+            <div class="alert alert-danger flash animated"><%= error%></div>
+            <%}%>
+        </div>
+    </div>
+    <style>
+        @media(max-width: 675px){
+        #containing_div img{
+        height: 30px;
+        width: 30px;
+        }
+        .message {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 50%;
+        width: 90%;
+        min-width: 200px;
+        position: fixed;
+        top: 20%;
+        left: 5%;
+        }
+    }
+    </style>
+</body>
+</html>
