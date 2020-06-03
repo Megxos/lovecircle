@@ -11,7 +11,7 @@ Send messages to your loved ones. It could be anonymous or not.
 8. body-parser
 
 # Usage
-Either type npm start or node app.js to start the server.
+Either type '''npm start''' or node app.js to start the server.
 # Note
 MongoDB is required for storing messages and user data. You can't signup without it.
 
